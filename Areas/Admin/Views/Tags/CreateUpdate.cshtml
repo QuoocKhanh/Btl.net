@@ -1,0 +1,42 @@
+﻿@{
+    //load file layout vao day
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+@using BTL.Models
+@functions {
+    public MyDbContext db = new MyDbContext();
+}
+
+<div class="card">
+    <div class="body">
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"><a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">Profile Settings</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
+                    <form class="form-horizontal" method="post" action="@ViewBag.action">
+                        <div class="form-group">
+                            <label for="NameSurname" class="col-sm-2 control-label">Name </label>
+                            <div class="col-sm-10">
+                                <div class="form-line">
+                                    <input type="text" value="@if(Model != null){
+                                    <text>@Model["Name"]</text>
+                                    }" name="Name" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-danger">SUBMIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

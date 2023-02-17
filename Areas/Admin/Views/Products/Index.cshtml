@@ -1,0 +1,125 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+@*Để phân trang thì using các đối tượng sau*@
+@using BTL.Models;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@* Co the dinh nghia cac ham, viet code trong file.cshtml*@
+@functions{
+    public MyDbContext db = new MyDbContext();
+    //hàm liệt kê các danh mục tương ứng với id sản phẩm
+    public string ListCategoriesProductsName(int _ProductId)
+    {
+        //lấy các danh mục trong table CatgoriesProducts tương ứng với _ProductId
+        List<ItemCategoriesProducts> list_categories_products = db.CategoriesProducts.Where(item=>item.ProductId == _ProductId).ToList();
+        //lấy các danh mục tương ứng với id danh mục vừa lấy ở trên
+        string str = "";
+        foreach(var item_category_product in list_categories_products)
+        {
+            ItemCategory record_category = db.Categories.Where(item => item.Id == item_category_product.CategoryId).FirstOrDefault();
+            if(record_category != null)
+            {
+                str += "<div>" + record_category.Name + "</div>";
+            }
+        }
+        return str;
+    }
+    //hàm liệt kê các tag tương ứng với id sản phẩm
+    public string ListTagsProductsName(int _ProductId)
+    {
+        //lấy các danh mục trong table CatgoriesProducts tương ứng với _ProductId
+        List<ItemTagProduct> list_tags_products = db.TagsProducts.Where(item => item.ProductId == _ProductId).ToList();
+        //lấy các danh mục tương ứng với id danh mục vừa lấy ở trên
+        string str = "";
+        foreach (var item_tag_product in list_tags_products)
+        {
+            ItemTag record_tag = db.Tags.Where(item => item.Id == item_tag_product.TagId).FirstOrDefault();
+            if (record_tag != null)
+            {
+                str += "<div>" + record_tag.Name + "</div>";
+            }
+        }
+        return str;
+    }
+}
+<div class="row clearfix">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header">
+                <h2>
+                    List Product
+                </h2>
+                <ul class="header-dropdown m-r--5">
+                    <li class="dropdown">
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                        <ul class="dropdown-menu pull-right">
+                            <li><a href="/Admin/Adv/Create">Add new adv</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="body table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:100px;">Photo</th>
+                            <th style="width:200px;">Name</th>
+                            <th style="width:80px;">Categories</th>
+                             <th style="width:100px;">Tag</th>
+                            <th style="width:100px;">Price</th>
+                            <th style="width:100px;">Discount</th>
+                            <th style="width:80px; text-align:center;">Hot</th>
+                            <th style="width:100px;"></th>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @if (!String.IsNullOrEmpty(item.Photo) && File.Exists(Directory.GetCurrentDirectory() + "\\wwwroot\\Upload\\Products\\" + item.Photo))
+                                    {
+                                        <img src="~/Upload/Products/@item.Photo" style="width:100px;">
+                                    }
+                                </td>
+                                <td>@item.Name</td>
+                                <td>@Html.Raw(ListCategoriesProductsName(item.Id))</td>
+                                <td>@Html.Raw(ListTagsProductsName(item.Id))</td>
+                                <td style="text-align:center">@string.Format("{0:#,#.}",item.Price) $</td>
+                                <td style="text-align:center">@item.Discount %</td>
+                                <td style="text-align:center">
+                                    @if (item.Hot == 1)
+                                    {
+                                        <span class="glyphicon glyphicon-check"></span>
+                                    }
+                                </td>                             
+                                <td>
+                                    <a class="btn btn-warning waves-effect" href="/Admin/Products/Update/@item.Id">Edit</a>
+                                    <a class="btn btn-danger waves-effect" href="/Admin/Products/Delete/@item.Id" onclick="return window.confirm('Are you sure?');">Delete</a>
+                                </td>
+                            </tr>
+                            
+                        }
+
+                    </tbody>
+                </table>
+                <style type="text/css">
+                    .pagination {
+                        padding: 0px;
+                        margin: 0px;
+                    }
+                </style>
+                @Html.PagedListPager((IPagedList)Model,p => Url.Action("Index",new {page = p}))
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

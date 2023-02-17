@@ -1,0 +1,174 @@
+﻿@using BTL.Models;
+@using BTL.MyClass;
+
+@{
+    Layout = "~/Views/Sharedd/Layout.cshtml";
+
+}
+@functions
+{
+    MyDbContext db = new MyDbContext();
+
+    public List<ItemSlide> Slides()
+    {
+        List<ItemSlide> list_record = db.Slides.Where(item => item.Id == 3).OrderByDescending(item => item.Id).ToList();
+        return list_record;
+    }
+    public List<ItemProduct> OnSale()
+    {
+        List<ItemProduct> list_record = db.Products.Where(item => item.Discount > 0).OrderByDescending(item => item.Id).Skip(0).Take(9).ToList();
+        return list_record;
+    }
+
+    public List<ItemProduct> HotProducts()
+    {
+        List<ItemProduct> list_record = db.Products.Where(item => item.Hot == 1).OrderByDescending(item => item.Id).Skip(0).Take(3).ToList();
+        return list_record;
+    }
+
+
+
+}
+
+<!-- banner part start-->
+@{
+    List<ItemSlide> lst_slide = Slides();
+}
+@foreach (var item in Slides())
+{
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-5">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+                            <h1>
+                                @item.Name
+                            </h1>
+                            <p>
+                                @item.Title
+                            </p>
+                            <a href="product_list.html" class="btn_1">shop now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="banner_img">
+            <img src="~/Upload/Slides/@item.Photo" alt="#" class="img-fluid">
+            <img src="~/assets/img/banner_pattern.png " alt="#" class="pattern_img img-fluid">
+        </div>
+    </section>
+}
+<!-- banner part start-->
+<!-- product list start-->
+<section class="single_product_list">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @{
+                    List<ItemProduct> lst = HotProducts();
+                }
+                @foreach (var item in lst)
+                {
+                    <div class="single_product_iner">
+                        <div class="row align-items-center justify-content-between">
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="single_product_img">
+                                    <img src="~/Upload/Products/@item.Photo" alt="#" class="img-fluid">
+                                    <img src="~/assets/img/product_overlay.png" alt="#" class="product_overlay img-fluid">
+                                </div>
+                            </div>
+                            <div class="col-lg-5 col-sm-6">
+                                <div class="single_product_content">
+                                    <h5>@item.Name</h5>
+                                    <h2>
+                                        <a href="single-product.html">
+                                            From $@string.Format("{0:#,#.}",item.Price)
+                                        </a>
+                                    </h2>
+                                    <a href="/Products/Detail/@item.Id" class="btn_3">Explore Now</a>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- product list end-->
+<!-- trending item start-->
+<section class="trending_items">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section_tittle text-center">
+                    <h2>On Sale Items</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @{
+                List<ItemProduct> sale = OnSale();
+            }
+            @foreach (var item in sale)
+            {
+                <div class="col-lg-4 col-sm-6">
+                    <div class="single_product_item">
+                        <div class="single_product_item_thumb">
+                            <img src="~/Upload/Products/@item.Photo" alt="#" class="img-fluid">
+                        </div>
+                        <h3>
+                            <a href="/Products/Detail/@item.Id">
+                                @item.Name
+                            </a>
+                        </h3>
+                        <p>From $@string.Format("{0:#,#.}",item.Price)</p>
+                        <!-- rating -->
+                        <a href="/Products/Rating/@item.Id?star=1" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                        <a href="/Products/Rating/@item.Id?star=2" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                        <a href="/Products/Rating/@item.Id?star=3" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                        <a href="/Products/Rating/@item.Id?star=4" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                        <a href="/Products/Rating/@item.Id?star=5" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                        <!-- /rating -->
+                        <div class="btn_add">
+                            <a href="/Cart/Add/@item.Id">Add to cart</a>
+                            <a href="/Cart/Add/@item.Id">Add to Wishlist</a>
+                        </div>
+
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</section>
+<!-- trending item end-->
+<style>
+    .btn_add {
+        display: flex;
+        background-color: transparent;
+        text-transform: uppercase;
+        -webkit-transition: 0.5s;
+        transition: 0.5s;
+    }
+
+        .btn_add a {
+            padding: 7px 14px;
+            margin: 0 20px 0 0;
+            font-size: 15px;
+            color: #B08EAD;
+            border: 1px solid #B08EAD;
+            border-radius: 5px;
+        }
+
+            .btn_add a:hover {
+                background-color: #B08EAD;
+                color: #fff;
+            }
+</style>

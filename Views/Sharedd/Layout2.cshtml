@@ -1,0 +1,342 @@
+﻿@using BTL.Models
+@functions {
+    public MyDbContext db = new MyDbContext();
+
+    public List<ItemCategory> Cate()
+    {
+        List<ItemCategory> lst_record = db.Categories.Where(item => item.ParentId == 0).OrderByDescending(tbl => tbl.Id).ToList();
+        return lst_record;
+    }
+    public List<ItemCategory> SubCate(int _CateId)
+    {
+        List<ItemCategory> lst_record = db.Categories.Where(item => item.ParentId == _CateId).OrderByDescending(tbl => tbl.Id).ToList();
+        return lst_record;
+    }
+    //dem so sp co trong danh muc
+    public int ProductsCount(int CateId)
+    {
+        var list_products = db.CategoriesProducts.Where(item => item.CategoryId == CateId).Select(item => new { item.ProductId });
+        List<int> id_products = new List<int>();
+        foreach (var item in list_products)
+        {
+            id_products.Add(item.ProductId);
+        }
+        int c = db.Products.Where(item => id_products.Contains(item.Id)).Count();
+        return c;
+    }
+
+}
+
+<!doctype html>
+<html lang="zxx">
+
+<head>
+    <!-- Required meta tags -->
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>pillloMart</title>
+    <link rel="icon" href="~/assets/img/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="~/assets/css/flaticon.css">
+    <link rel="stylesheet" href="~/assets/css/themify-icons.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<style>
+    select {
+        background-color: #F4EDF2;
+        border-radius: 5px;
+        border: none;
+        -webkit-appearance: none;
+        appearance: none;
+    }
+
+        select::-ms-expand {
+            display: none;
+        }
+</style>
+
+<body>
+    <!--::header part start::-->
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html"> <img src="~/assets/img/logo.png" alt="logo"> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                                aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Home">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="about.html">about</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
+                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        product
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
+                                        <a class="dropdown-item" href="/Products"> product list</a>
+                                        <a class="dropdown-item" href="single-product.html">product details</a>
+
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
+                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        pages
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="/Account/Login">login</a>
+                                        <a class="dropdown-item" href="/Account/Register">Register</a>
+                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
+                                        <a class="dropdown-item" href="cart.html">shopping cart</a>
+                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
+                                        <a class="dropdown-item" href="elements.html">elements</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
+                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        blog
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                        <a class="dropdown-item" href="blog.html"> blog</a>
+                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="contact.html">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="hearer_icon d-flex align-items-center">
+                            <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
+                            <a href="/Account/Login" id="login"><i class="fa-solid fa-user"></i></a>
+                            <a href="/Cart">
+                                <i class="flaticon-shopping-cart-black-shape"></i>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Header part end-->
+    <!-- breadcrumb part start-->
+    <section class="breadcrumb_part">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb_iner">
+                        <h2>product list</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- breadcrumb part end-->
+    <!-- product list part start-->
+    <section class="product_list section_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="product_sidebar">
+                        <div class="single_sedebar">
+                            <form action="#">
+                                <input type="text" name="#" placeholder="Search keyword">
+                                <i class="ti-search"></i>
+                            </form>
+                        </div>
+                        @{
+                            List<ItemCategory> categories = Cate();
+                        }
+                        @foreach (var item in categories)
+                        {
+                            List<ItemCategory> sub_cate = SubCate(item.Id);
+
+                            <div class="single_sedebar">
+                                <div class="select_option">
+                                    <div class="select_option_list"><a href="/Products/Index/@item.Id">@item.Name </a> <i class="right fas fa-caret-down"></i> </div>
+                                    <div class="select_option_dropdown">
+                                        @foreach (var item_sub in sub_cate)
+                                        {
+                                            <p><a href="/Products/Index/@item_sub.Id">@item_sub.Name</a></p>
+
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                        
+                        <div class="single_sedebar">
+                            <div class="select_option">
+                                <div class="select_option_list">
+                                    <select name="orderby" style="width:310px;height:30px" class="use-chosen" onchange="location.href='/Products/Index/@if(ViewBag.CategoryId != null && ViewBag.CategoryId > 0){
+                                    <text>@ViewBag.CategoryId</text>
+}?order='+this.value;">
+                                        <option value="name-asc">Sort by name a-z</option>
+                                        <option value="name-desc">Sort by name z-a</option>
+                                        <option value="price-asc">Sort by price: low to high</option>
+                                        <option value="price-desc">Sort by price: high to low</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_sedebar">
+                            <div class="widget mercado-widget filter-widget price-filter">
+                                <h2 class="widget-title">Price</h2>
+                                <div class="widget-content" >
+                                    <input type="number" min="0" id="fromPrice" style="width:160px" placeholder="from price"> - <input type="number" min="0" id="toPrice" style="width:160px;" placeholder="to price"> 
+                                                                    
+                                </div>
+                                <button style="margin-top:30px; margin-left: 120px "  onclick="location.href='/Search/SearchPrice?fromPrice='+document.getElementById('fromPrice').value+'&toPrice='+document.getElementById('toPrice').value" class="genric-btn info-border">Filter</button>
+                                
+                            </div>
+                        </div>
+                        @functions {
+                            //lấy các danh sách
+                            public List<ItemTag> ListTags()
+                            {
+                                //List<ItemTag> list_record = (from item in db.Tags orderby item.Id descending select item).ToList();
+                                List<ItemTag> list_record = db.Tags.OrderByDescending(item => item.Id).ToList();
+                                return list_record;
+                            }
+                        }
+                        <div class="single_sedebar">
+                            <div class="single-element-widget mt-30" >
+                                <h3 class="mb-30">Tags</h3>
+                                @{
+                                    //lấy danh sách tags
+                                    List<ItemTag> list_tags = ListTags();
+
+                                    //lấy tên Controller
+                                    string controllerName = Context.Request.RouteValues["controller"].ToString();
+                                    //lấy tên action (tên hàm trong controller)
+                                    string actionName = Context.Request.RouteValues["action"].ToString();
+                                    //lấy id
+                                    string id = Context.Request.RouteValues["id"] != null ? Context.Request.RouteValues["id"].ToString() : "0";
+                                }
+                                @foreach (var item in list_tags)
+                                        {
+                                    <div class="switch-wrap d-flex justify-content-between">
+                                       
+                                        
+                                            <a href="/Search/Tag/@item.Id">
+                                            <p>@item.Name</p>
+                                            </a>
+                                            <div class="primary-checkbox">
+                                                <input type="radio" id="@item.Id" name="btn" @if(controllerName=="Search"&&actionName=="Tag"&&!String.IsNullOrEmpty(id)&&Convert.ToInt32(id)==Convert.ToInt32(item.Id)){<text>checked</text>}>
+                                            <label for="@item.Id"></label>
+                                            </div>
+                                            
+                                        
+                                       
+
+                                    </div>
+                              }  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- product list part end-->
+    <!-- subscribe part here -->
+    <section class="subscribe_part section_padding">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="subscribe_part_content">
+                        <h2>Get promotions & updates!</h2>
+                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
+                        <div class="subscribe_form">
+                            <input type="email" placeholder="Enter your mail">
+                            <a href="#" class="btn_1">Subscribe</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- subscribe part end -->
+    <!--::footer_part start::-->
+    <footer class="footer_part">
+        <div class="footer_iner">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-8">
+                        <div class="footer_menu">
+                            <div class="footer_logo">
+                                <a href="index.html"><img src="~/assets/img/logo.png" alt="#"></a>
+                            </div>
+                            <div class="footer_menu_item">
+                                <a href="index.html">Home</a>
+                                <a href="about.html">About</a>
+                                <a href="product_list.html">Products</a>
+                                <a href="#">Pages</a>
+                                <a href="blog.html">Blog</a>
+                                <a href="contact.html">Contact</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="social_icon">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row ">
+                    <div class="col-lg-12">
+                        <div class="copyright_text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--::footer_part end::-->
+    <!-- jquery plugins here-->
+    <script src="~/assets/js/jquery-1.12.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="~/assets/js/bootstrap.min.js"></script>
+    <!-- easing js -->
+    <script src="~/assets/js/jquery.magnific-popup.js"></script>
+    <!-- slick js -->
+    <script src="~/assets/js/slick.min.js"></script>
+    <script src="~/assets/js/jquery.counterup.min.js"></script>
+    <script src="~/assets/js/jquery.ajaxchimp.min.js"></script>
+    <!-- custom js -->
+    <script src="~/assets/js/custom.js"></script>
+</body>
+
+</html>

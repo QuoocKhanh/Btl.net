@@ -1,0 +1,96 @@
+﻿@using BTL.Models
+@{
+    //load file Layout2.cshtml vào đây
+    Layout = "~/Views/Sharedd/Layout.cshtml";
+}
+@{
+    List<Item> _cart = ViewBag._cart as List<Item>;
+}
+
+<section class="cart_area section_padding">
+     @if (_cart != null)
+    {
+        <div class="container">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in _cart)
+                            {
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="/Upload/Products/@item.ProductRecord.Photo" alt="" />
+                                        </div>
+                                        <div class="media-body">
+                                            <p>@item.ProductRecord.Name</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                        <h5>$@string.Format("{0:#,#.}",item.ProductRecord.Price - (item.ProductRecord.Price * item.ProductRecord.Discount)/100)</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <div class="">
+                                            <input type="number" name="product_@item.ProductRecord.Id" value="@item.Quantity" data-max="120" pattern="[0-9]*" style="line-height:30px; border:1px solid #dddddd;">
+                                        </div>    
+                                    </div>
+                                </td>
+                                <td>
+                                        <h5>$@string.Format("{0:#,#.}",item.Quantity*(item.ProductRecord.Price - (item.ProductRecord.Price * item.ProductRecord.Discount)/100))</h5>
+                                </td>
+                                <td>
+                                        <a href="/Cart/Remove/@item.ProductRecord.Id" class="btn btn-delete" title="Remove" style="position:absolute; top:5px; left:-25px;">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                           }
+                            @if (_cart.Count > 0)
+                            {
+                                <tr class="bottom_button">
+                                    <td>
+                                        <a class="btn_1" href=""><input type="submit" class="btn btn-update" value="Update Cart"></a>
+                                    </td>
+                                    <td>
+
+                                    </td>
+                                    <td></td>
+                                    <td>
+                                        <div class="cupon_text float-right">
+                                            <a class="btn_1" href="/Cart/Destroy">Clear Cart</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <h5>Subtotal</h5>
+                                    </td>
+                                    <td>
+                                        <h5>$@string.Format("{0:#,#.}",ViewBag._total)</h5>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <div class="checkout_btn_inner float-right">
+                        <a class="btn_1" href="/Home">Continue Shopping</a>
+                        <a class="btn_1 checkout_btn_1" href="/Cart/Checkout">Proceed to checkout</a>
+                    </div>                           
+                </div>
+            </div>
+        </div>
+    }
+</section>

@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Sharedd/Layout2.cshtml";
+}
+
+@using BTL.MyClass;
+@using BTL.Models;
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@{
+    MyDbContext db = new MyDbContext();
+
+    List<ItemProduct> lstProd = db.Products.OrderByDescending(n => n.Id).ToList();
+}
+
+<div class="product_list">
+    <div class="row">
+        @foreach(var item in Model)
+        {
+            <div class="col-lg-6 col-sm-6">
+            <div class="single_product_item">
+                <img src="~/Upload/Products/@item.Photo" alt="#" class="img-fluid">
+                <h3>
+                        <a href="/Products/Detail/@item.Id">
+                        @item.Name
+                    </a>
+                </h3>
+                    <p>From @string.Format("{0:#,#.}",item.Price)$</p>
+                   
+            </div>
+        </div>
+        }      
+    </div>
+    
+     
+    <div class="load_more_btn text-center">
+        <div class="pagination">
+             @Html.PagedListPager((IPagedList)Model,p=>Url.Action("Index", new {page = p}))
+        </div>
+        
+    </div>   
+    <style>
+        .pagination {
+  display: inline-block;
+}
+
+.pagination a  {
+  color: black;
+  float: left;
+  
+  text-decoration: none;
+}
+
+    </style>
+    
+</div>
+
