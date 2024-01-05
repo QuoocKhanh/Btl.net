@@ -1,5 +1,5 @@
 ﻿@using BTL.Models
-@functions{
+@functions {
     public MyDbContext db = new MyDbContext();
     //Hiển thị số sao (star) của sản phẩm
     public string GetStar(int _ProductId, int _Star)
@@ -7,40 +7,45 @@
         int _NumberStar = db.Rating.Where(item => item.ProductId == _ProductId && item.Star == _Star).Count();
         return _NumberStar.ToString();
     }
+    public int GetReviews(int _ProductId)
+    {
+        int _review = db.Rating.Where(item => item.ProductId == _ProductId).Count();
+        return _review;
+    }
+
     //hàm liệt kê các danh mục tương ứng với id sản phẩm
     public string ListCategoriesProductsName(int _ProductId)
     {
-        /*
-        //lấy các danh mục trong table CatgoriesProducts tương ứng với _ProductId
-        List<ItemCategoriesProducts> list_categories_products = db.CategoriesProducts.Where(item=>item.ProductId == _ProductId).ToList();
-        //lấy các danh mục tương ứng với id danh mục vừa lấy ở trên
-        string str = "";
-        foreach(var item_category_product in list_categories_products)
-            {
-            ItemCategory record_category = db.Categories.Where(item => item.Id == item_category_product.CategoryId).FirstOrDefault();
-            if(record_category != null)
-                {
-                str += record_category.Name + ", ";
-        }
-        }
-        return str;
-        */
         var list_categories = (from product in db.Products join category_product in db.CategoriesProducts on product.Id equals category_product.ProductId join category in db.Categories on category_product.CategoryId equals category.Id where product.Id == _ProductId select new { category.Name }).ToList();
         string str = "";
-        foreach(var item in list_categories)
+        foreach (var item in list_categories)
         {
             str += item.Name + ",";
         }
         return str;
     }
+    public List<ItemProduct> ProductsInCategory(int _CategoryId)
+    {
+        //---
+        var list_products = db.CategoriesProducts.Where(item => item.CategoryId == _CategoryId).Select(item => new { item.ProductId });
+        List<int> id_products = new List<int>();
+        foreach (var item in list_products)
+        {
+            id_products.Add(item.ProductId);
+        }
+        //---
+        //lấy các sản phẩm có id thuộc danh sách id của list_products
+        List<ItemProduct> list_record = db.Products.Where(item => id_products.Contains(item.Id)).OrderByDescending(item => item.Id).Skip(0).Take(4).ToList();
+        return list_record;
+    }
+   
+
 }
 
 <!doctype html>
 <html lang="zxx">
 
 <head>
-    
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -62,83 +67,148 @@
     .product_image_area .single_product_text {
         margin: 0;
     }
+
+
+    .nav-pills {
+        width: 100%;
+        display: block;
+    }
+
+        .nav-pills p {
+            margin-bottom: 0;
+        }
+
+        .nav-pills .nav-link {
+            padding: 35px 30px !important;
+            border-radius: 0;
+            margin-bottom: 0;
+            color: #000000;
+            font-size: 22px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            border: 1px solid transparent;
+            background: rgba(0, 0, 0, 0.05);
+            width: 33%;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            -ms-border-radius: 0;
+            border-radius: 0;
+        }
+
+            .nav-pills .nav-link:after {
+                position: absolute;
+                bottom: -10px;
+                left: 0;
+                right: 0;
+                width: 0;
+                content: '';
+                height: 0;
+                margin: 0 auto;
+                border-style: solid;
+                border-width: 10px 10px 0 10px;
+                border-color: #B08EAD transparent transparent transparent;
+                opacity: 0;
+            }
+
+            .nav-pills .nav-link span {
+                display: block;
+                font-size: 14px;
+            }
+
+            .nav-pills .nav-link:hover {
+                background: #d5c37c;
+                color: #fff;
+            }
+
+            .nav-pills .nav-link.active {
+                color: #fff;
+                -moz-transition: all 0.3s ease;
+                -o-transition: all 0.3s ease;
+                -webkit-transition: all 0.3s ease;
+                -ms-transition: all 0.3s ease;
+                transition: all 0.3s ease;
+                border: 1px solid transparent;
+                background: #B08EAD;
+            }
+
+                .nav-pills .nav-link.active:after {
+                    opacity: 1;
+                }
+
+    .nav-link {
+        display: block;
+        padding: 0.5rem 1rem;
+    }
+
+        .nav-link:hover, .nav-link:focus {
+            text-decoration: none;
+        }
+
+        .nav-link.disabled {
+            color: #6c757d;
+            pointer-events: none;
+            cursor: default;
+        }
+
+    .nav-tabs {
+        border-bottom: 1px solid #dee2e6;
+    }
+
+        .nav-tabs .nav-item {
+            margin-bottom: -1px;
+        }
+
+        .nav-tabs .nav-link {
+            border: 1px solid transparent;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
+        }
+
+            .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+                border-color: #e9ecef #e9ecef #dee2e6;
+            }
+
+            .nav-tabs .nav-link.disabled {
+                color: #6c757d;
+                background-color: transparent;
+                border-color: transparent;
+            }
+
+            .nav-tabs .nav-link.active,
+            .nav-tabs .nav-item.show .nav-link {
+                color: #495057;
+                background-color: #fff;
+                border-color: #dee2e6 #dee2e6 #fff;
+            }
+
+        .nav-tabs .dropdown-menu {
+            margin-top: -1px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+    .nav-pills .nav-link {
+        border-radius: 0.25rem;
+    }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .show > .nav-link {
+            color: #fff;
+            background-color: #B08EAD;
+        }
+
+    .fade {
+        -webkit-transition: opacity 0.15s linear;
+        -o-transition: opacity 0.15s linear;
+        transition: opacity 0.15s linear;
+    }
+
 </style>
 <body>
     <!--::header part start::-->
-    <header class="main_menu home_menu">
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="index.html"> <img src="~/assets/img/logo.png" alt="logo"> </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="menu_icon"><i class="fas fa-bars"></i></span>
-                        </button>
+    @Html.Partial("~/Views/Sharedd/Menu.cshtml")
 
-                        <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
-                            <ul class="navbar-nav">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html">about</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1"
-                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        product
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                        <a class="dropdown-item" href="/Products"> product list</a>
-                                        <a class="dropdown-item" href="single-product.html">product details</a>
-
-                                    </div>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3"
-                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="/Account/Login">login</a>
-                                        <a class="dropdown-item" href="/Account/Register">Register</a>
-                                        <a class="dropdown-item" href="checkout.html">product checkout</a>
-                                        <a class="dropdown-item" href="/Cart">shopping cart</a>
-                                        <a class="dropdown-item" href="confirmation.html">confirmation</a>
-                                        <a class="dropdown-item" href="elements.html">elements</a>
-                                    </div>
-                                </li>
-
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_2"
-                                       role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        blog
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                        <a class="dropdown-item" href="blog.html"> blog</a>
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                    </div>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="hearer_icon d-flex align-items-center">
-                            <a id="search_1"><i class="ti-search"></i></a>
-                            <a href="/Account/Login" id="login"><i class="fa-solid fa-user"></i></a>
-                            <a href="/Cart">
-                                <i class="flaticon-shopping-cart-black-shape"></i>
-                            </a>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
     <!-- Header part end-->
     <!-- breadcrumb part start-->
     <section class="breadcrumb_part single_product_breadcrumb">
@@ -159,155 +229,540 @@
                 <div class="col-lg-12">
                     <div class="product_img_slide owl-carousel">
                         <div class="single_product_img">
-                           
                             <img src="~/Upload/Products/@Model.Photo" alt="#" class="img-fluid">
-
-
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
-                    <div class="single_product_text text-center">
-                        <h3>
-                            @Model.Name
-                        </h3>
-                        <p>
-                            @Html.Raw(Model.Description)
-                        </p>
-                        
-                        <p>$@string.Format("{0:#,#.}",Model.Price)</p>
-                        <div class="product-rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <a href="#" class="count-review">(@GetStar(Model.Id,1) review)</a>
+
+                <div class="col-md-12 nav-link-wrap">
+                    <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link ftco-animate active mr-lg-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Description</a>
+
+                        <a class="nav-link ftco-animate mr-lg-1" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Manufacturer</a>
+
+                        <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Reviews</a>
+
                     </div>
-                    <br />
-                    <div class="product-rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <a href="#" class="count-review">(@GetStar(Model.Id,2) review)</a>
-                    </div>
-                    <br />
-                    <div class="product-rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <a href="#" class="count-review">(@GetStar(Model.Id,3) review)</a>
-                    </div>
-                    <br />
-                    <div class="product-rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <a href="#" class="count-review">(@GetStar(Model.Id,4) review)</a>
-                    </div>
-                    <br />
-                    <div class="product-rating">
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <i class="fa fa-star" aria-hidden="true"></i>
-                        <a href="#" class="count-review">(@GetStar(Model.Id,5) review)</a>
-                    </div>
-                    </div>
-                    <div class="card_area" >
-                        <div class="product_count_area" style="display: inline-block; margin-left:240px">
-                            <div style="display: flex">
-                                <p style="padding-top:10px">Quantity</p>
-                                <div class="product_count d-inline-block">
-                                    <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
-                                    <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
-                                    <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                </div>
+                <div class="col-md-12 tab-wrap">
+
+                    <div class="tab-content bg-light" id="v-pills-tabContent">
+
+
+                        <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
+                            <div class="p-4">
+                                <h3 class="mb-4">@Model.Name</h3>
+                                <p>@Html.Raw(Model.Description)</p>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="v-pills-day-2-tab">
+                            <div class="p-4">
+                                <h3 class="mb-4">Content</h3>
+                                <p>@Html.Raw(Model.Content)</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="v-pills-day-3-tab">
+                            <div class="row p-4">
+                                <div class="col-md-7">
+                                    <h3 class="mb-4">@GetReviews(Model.Id ) Reviews</h3>
+                                    <div class="review">
+                                        <div class="user-img" style="background-image: url(/assets/img/author_3.png)"></div>
+                                        <div class="desc">
+                                            <h4>
+                                                <span class="text-left">test</span>
+                                                <span class="text-right">1/3/2023</span>
+                                            </h4>
+                                            <p class="star">
+                                                <span>
+                                                    <a href="/Products/Rating/@Model.Id?star=1" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                                                    <a href="/Products/Rating/@Model.Id?star=2" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                                                    <a href="/Products/Rating/@Model.Id?star=3" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                                                    <a href="/Products/Rating/@Model.Id?star=4" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                                                    <a href="/Products/Rating/@Model.Id?star=5" style="margin-right: 3px;"><i class="fa fa-star" style="color:#efce4a;"></i></a>
+                                                </span>
+                                                <span class="text-right"><a href="#" class="reply"><i class="fa-solid fa-reply"></i></a></span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="rating-wrap">
+                                        <h3 class="mb-4">Give a Review</h3>
+                                        <p class="star">
+                                            <span>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                            </span>
+                                            <span>@GetStar(Model.Id,1) Reviews</span>
+                                        </p>
+                                        <p class="star">
+                                            <span>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+
+                                            </span>
+                                            <span>@GetStar(Model.Id,2) Reviews </span>
+                                        </p>
+                                        <p class="star">
+                                            <span>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+
+                                            </span>
+                                            <span>@GetStar(Model.Id,3) Reviews</span>
+                                        </p>
+                                        <p class="star">
+                                            <span>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+
+                                            </span>
+                                            <span>@GetStar(Model.Id,4) Reviews</span>
+                                        </p>
+                                        <p class="star">
+                                            <span>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+                                                <i class="fa-solid fa-star"></i>
+
+                                            </span>
+                                            <span>@GetStar(Model.Id,5) Reviews</span>
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="add_to_cart" style="margin-left:40px;margin-bottom:20px">
-                                <a href="/Cart/Add/@Model.Id" class="btn_3">add to cart</a>
-                            </div>
 
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-  
-    <!-- subscribe part here -->
-    <section class="subscribe_part section_padding">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="subscribe_part_content">
-                        <h2>Get promotions & updates!</h2>
-                        <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
-                        <div class="subscribe_form">
-                            <input type="email" placeholder="Enter your mail">
-                            <a href="#" class="btn_1">Subscribe</a>
+                <div class="card_area">
+                    <div class="product_count_area" style="display: inline-block;">
+                        <div style="display: flex">
+                            <p style="padding-top:10px">Quantity</p>
+                            <div class="product_count d-inline-block">
+                                <span class="product_count_item inumber-decrement"> <i class="ti-minus"></i></span>
+                                <input class="product_count_item input-number" type="text" value="1" min="0" max="10">
+                                <span class="product_count_item number-increment"> <i class="ti-plus"></i></span>
+                            </div>
                         </div>
+                        <div class="add_to_cart" style="margin-left:40px;margin-bottom:20px">
+                            <button type="submit" class="btn_3" onclick="displayAlert()"><a href="/Cart/Add/@Model.Id">add to cart</a></button>
+                        </div>
+                        <script>
+                            function displayAlert() {
+                                Swal.fire(
+                                    'Đã thêm vào giỏ hàng thành công',
+                                    'success'
+                                )
+                            }
+                        </script>
                     </div>
                 </div>
             </div>
+            @*<div class="related-products-area">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <!-- Section Heading -->
+                            <div class="section-heading text-center">
+                                <h2>Related Products</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    @{
+                        List<ItemCategory> list_categories = Categories();
+                    }
+                    @foreach (var itemCategory in list_categories)
+                    {
+                        var products = ProductsInCategory(itemCategory.Id);
+                        <div class="row">
+                            @foreach (var item in products)
+                            {
+                                <!-- Single Product Area -->
+                                <div class="col-12 col-sm-6 col-lg-3">
+                                    <div class="single-product-area mb-100">
+                                        <!-- Product Image -->
+                                        <div class="product-img">
+                                            <a href="/Products/Detail/@item.Id"><img src="/Upload/Products/@item.Photo" alt=""></a>
+                                            <!-- Product Tag -->
+
+                                            <div class="product-meta d-flex">
+                                                <a href="/Wishlist/Add/@item.Id" class="wishlist-btn"><i class="icon_heart_alt"></i></a>
+                                                <a href="/Cart/@item.Id" class="add-to-cart-btn">Add to cart</a>
+                                                <a href="#" class="compare-btn"><i class="arrow_left-right_alt"></i></a>
+                                            </div>
+                                        </div>
+                                        <!-- Product Info -->
+                                        <div class="product-info mt-15 text-center">
+                                            <a href="/Products/Detail/@item.Id">
+                                                <p>@item.Name<p>
+                                            </a>
+                                            <h6>$@string.Format("{0:#,#.}",item.Price)</h6>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    }
+                </div>
+                <style>
+                    .card_area .product_count .product_count_item {
+                        width: 50px;
+                        height: 50px;
+                        line-height: 53px;
+                        text-align: center;
+                        display: inline-block;
+                    }
+                    .review {
+                        width: 100%;
+                        margin-bottom: 30px;
+                        display: block;
+                        float: left;
+                    }
+
+                        .review .user-img {
+                            width: 80px;
+                            height: 80px;
+                            -webkit-border-radius: 50%;
+                            -moz-border-radius: 50%;
+                            -ms-border-radius: 50%;
+                            border-radius: 50%;
+                            float: left;
+                        }
+
+                    .hero-wrap, .img, .blog-img, .user-img {
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        background-position: center center;
+                    }
+
+                    .review .desc {
+                        width: calc(100% - 100px);
+                        float: right;
+                    }
+
+                        .review .desc h4 {
+                            width: 100%;
+                            margin-bottom: 10px;
+                        }
+
+                            .review .desc h4 span:first-child {
+                                font-size: 16px;
+                            }
+
+                            .review .desc h4 span {
+                                width: 49%;
+                                display: inline-block;
+                            }
+
+                    .text-left {
+                        text-align: left !important;
+                    }
+
+                    .review .desc h4 span:last-child {
+                        font-size: 12px;
+                        color: #b3b3b3;
+                    }
+
+                    .review .desc h4 span {
+                        width: 49%;
+                        display: inline-block;
+                    }
+
+                    .text-right {
+                        text-align: right !important;
+                    }
+
+                    .review .desc .star {
+                        width: 100%;
+                    }
+
+                        .review .desc .star i {
+                            color: #dbcc8f;
+                        }
+
+                    .review .desc .star {
+                        width: 100%;
+                    }
+
+                    p {
+                        margin-top: 0;
+                        margin-bottom: 1rem;
+                    }
+
+                    .review .desc .star span {
+                        width: 49%;
+                        display: inline-block;
+                    }
+
+                    .review .desc .star .reply {
+                        padding: 2px 10px;
+                        background: #f0f0f0;
+                        -webkit-border-radius: 2px;
+                        -moz-border-radius: 2px;
+                        -ms-border-radius: 2px;
+                        border-radius: 2px;
+                    }
+
+                    a {
+                        -webkit-transition: .3s all ease;
+                        -o-transition: .3s all ease;
+                        transition: .3s all ease;
+                        color: #dbcc8f;
+                    }
+
+                    a {
+                        color: #007bff;
+                        text-decoration: none;
+                        background-color: transparent;
+                    }
+
+                    .single-product-area {
+                        position: relative;
+                        z-index: 1;
+                        -webkit-transition-duration: 500ms;
+                        transition-duration: 500ms;
+                    }
+
+                    .mb-100 {
+                        margin-bottom: 100px !important;
+                    }
+
+                    .single-product-area .product-img {
+                        position: relative;
+                        z-index: 1;
+                        -webkit-transition-duration: 500ms;
+                        transition-duration: 500ms;
+                    }
+
+                        .single-product-area .product-img a {
+                            display: block;
+                        }
+
+                    a, a:hover, a:focus {
+                        -webkit-transition-duration: 500ms;
+                        transition-duration: 500ms;
+                        text-decoration: none;
+                        outline: 0 solid transparent;
+                        color: #303030;
+                        font-weight: 500;
+                        font-size: 14px;
+                    }
+
+                    .single-product-area .product-img img {
+                        position: relative;
+                        z-index: 1;
+                        width: 100%;
+                    }
+
+                    img {
+                        height: auto;
+                        max-width: 100%;
+                    }
+
+                    .single-product-area .product-img .product-tag a {
+                        background-color: #429edf;
+                        border-radius: 2px;
+                        display: inline-block;
+                        height: 20px;
+                        padding: 0 10px;
+                        line-height: 20px;
+                        text-transform: uppercase;
+                        color: #ffffff;
+                        font-weight: 700;
+                        font-size: 12px;
+                        position: absolute;
+                        top: 20px;
+                        left: 20px;
+                        z-index: 10;
+                    }
+
+                    .single-product-area .product-img .product-meta {
+                        position: absolute;
+                        bottom: 30px;
+                        left: 15px;
+                        right: 15px;
+                        z-index: 100;
+                        visibility: hidden;
+                        opacity: 0;
+                        -webkit-transition-duration: 500ms;
+                        transition-duration: 500ms;
+                    }
+
+                    .d-flex {
+                        display: -ms-flexbox !important;
+                        display: flex !important;
+                    }
+
+                    .single-product-area .product-img .product-meta a {
+                        font-size: 16px;
+                        color: #ffffff;
+                        font-weight: 600;
+                        background-color: #303030;
+                        -webkit-box-flex: 0;
+                        -ms-flex: 0 0 50px;
+                        flex: 0 0 50px;
+                        max-width: 50px;
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        text-transform: uppercase;
+                        text-align: center;
+                    }
+
+                    .single-product-area .product-img a {
+                        display: block;
+                    }
+
+                    a, a:hover, a:focus {
+                        -webkit-transition-duration: 500ms;
+                        transition-duration: 500ms;
+                        text-decoration: none;
+                        outline: 0 solid transparent;
+                        color: #303030;
+                        font-weight: 500;
+                        font-size: 14px;
+                    }
+
+                    .single-product-area .product-img .product-meta .add-to-cart-btn {
+                        -webkit-box-flex: 0;
+                        -ms-flex: 0 0 calc(100% - 100px);
+                        flex: 0 0 calc(100% - 100px);
+                        max-width: calc(100% - 100px);
+                        width: calc(100% - 100px);
+                        border-left: 1px solid rgba(235, 235, 235, 0.5);
+                        border-right: 1px solid rgba(235, 235, 235, 0.5);
+                    }
+
+                    .single-product-area .product-img .product-meta a {
+                        font-size: 16px;
+                        color: #ffffff;
+                        font-weight: 600;
+                        background-color: #303030;
+                        -webkit-box-flex: 0;
+                        -ms-flex: 0 0 50px;
+                        flex: 0 0 50px;
+                        max-width: 50px;
+                        width: 50px;
+                        height: 50px;
+                        line-height: 50px;
+                        text-transform: uppercase;
+                        text-align: center;
+                    }
+
+                    .single-product-area .product-img a {
+                        display: block;
+                    }
+
+                    a, a:hover, a:focus {
+                        -webkit-transition-duration: 500ms;
+                        transition-duration: 500ms;
+                        text-decoration: none;
+                        outline: 0 solid transparent;
+                        color: #303030;
+                        font-weight: 500;
+                        font-size: 14px;
+                    }
+                </style>
+            </div>*@
         </div>
-    </section>
-    <!-- subscribe part end -->
-    <!--::footer_part start::-->
-    <footer class="footer_part">
-        <div class="footer_iner">
+
+
+        <!-- subscribe part here -->
+        <section class="subscribe_part section_padding">
             <div class="container">
-                <div class="row justify-content-between align-items-center">
+                <div class="row justify-content-center">
                     <div class="col-lg-8">
-                        <div class="footer_menu">
-                            <div class="footer_logo">
-                                <a href="index.html"><img src="~/assets/img/logo.png" alt="#"></a>
+                        <div class="subscribe_part_content">
+                            <h2>Get promotions & updates!</h2>
+                            <p>Seamlessly empower fully researched growth strategies and interoperable internal or “organic” sources credibly innovate granular internal .</p>
+                            <div class="subscribe_form">
+                                <input type="email" placeholder="Enter your mail">
+                                <a href="#" class="btn_1">Subscribe</a>
                             </div>
-                            <div class="footer_menu_item">
-                                <a href="index.html">Home</a>
-                                <a href="about.html">About</a>
-                                <a href="product_list.html">Products</a>
-                                <a href="#">Pages</a>
-                                <a href="blog.html">Blog</a>
-                                <a href="contact.html">Contact</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="social_icon">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-google-plus-g"></i></a>
-                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+        <!-- subscribe part end -->
+        <!--::footer_part start::-->
+        <footer class="footer_part">
+            <div class="footer_iner">
+                <div class="container">
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-lg-8">
+                            <div class="footer_menu">
+                                <div class="footer_logo">
+                                    <a href="index.html"><img src="~/assets/img/logo.png" alt="#"></a>
+                                </div>
+                                <div class="footer_menu_item">
+                                    <a href="/Home">Home</a>
+                                    <a href="/About">About</a>
+                                    <a href="/Products">Products</a>
+                                    <a href="#">Pages</a>
+                                    <a href="/Blog">Blog</a>
+                                    <a href="/Contact">Contact</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="social_icon">
+                                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <div class="copyright_part">
-            <div class="container">
-                <div class="row ">
-                    <div class="col-lg-12">
-                        <div class="copyright_text">
+            <div class="copyright_part">
+                <div class="container">
+                    <div class="row ">
+                        <div class="col-lg-12">
+                            <div class="copyright_text">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    <!--::footer_part end::-->
+        </footer>
+        <!--::footer_part end::-->
 
 </body>
 <!-- bootstrap js -->
-    <script src="~/assets/js/bootstrap.min.js"></script>
+<script src="~/assets/js/bootstrap.min.js"></script>
 <!-- carousel js -->
 <!-- jquery plugins here-->
-    <script src="~/assets/js/jquery-1.12.1.min.js"></script>
-    <!-- easing js -->
-    <script src="~/assets/js/jquery.magnific-popup.js"></script>
-    <!-- particles js -->
-    <script src="~/assets/js/owl.carousel.min.js"></script>
-    <script src="~/assets/js/jquery.nice-select.min.js"></script>
-    <script src="~/assets/js/jquery.counterup.min.js"></script>
-    <script src="~/assets/js/jquery.ajaxchimp.min.js"></script>
-    <!-- custom js -->
-    <script src="~/assets/js/custom.js"></script>
+<script src="~/assets/js/jquery-1.12.1.min.js"></script>
+<!-- easing js -->
+<script src="~/assets/js/jquery.magnific-popup.js"></script>
+<!-- particles js -->
+<script src="~/assets/js/owl.carousel.min.js"></script>
+<script src="~/assets/js/jquery.nice-select.min.js"></script>
+<script src="~/assets/js/jquery.counterup.min.js"></script>
+<script src="~/assets/js/jquery.ajaxchimp.min.js"></script>
+<!-- custom js -->
+<script src="~/assets/js/custom.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>

@@ -14637,24 +14637,20 @@
       "PackagePath": "staticwebassets\\Admin\\scss\\themes\\theme-yellow.scss"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Adv\\133196267836791334_home-1-banner-1.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Adv\\133196267836791334_home-1-banner-1.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\News\\single_blog_2.png",
+      "PackagePath": "staticwebassets\\Upload\\News\\single_blog_2.png"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Adv\\133196268076271008_home-1-banner-2.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Adv\\133196268076271008_home-1-banner-2.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\News\\single_blog_3.png",
+      "PackagePath": "staticwebassets\\Upload\\News\\single_blog_3.png"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Adv\\133196270271001362_shop-banner.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Adv\\133196270271001362_shop-banner.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\News\\single_blog_4.png",
+      "PackagePath": "staticwebassets\\Upload\\News\\single_blog_4.png"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Adv\\133196270822859689_size-banner-widget.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Adv\\133196270822859689_size-banner-widget.jpg"
-    },
-    {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Adv\\133196271044757185_size-banner-widget.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Adv\\133196271044757185_size-banner-widget.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\News\\single_blog_5.png",
+      "PackagePath": "staticwebassets\\Upload\\News\\single_blog_5.png"
     },
     {
       "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133173136682521212_000000000010020041-senheiser-hd449--1-9-2-151336.jpg",
@@ -14725,24 +14721,384 @@
       "PackagePath": "staticwebassets\\Upload\\Products\\133196283030880996_tools_equipment_6.jpg"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Slides\\133196260397660608_main-slider-1-2.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Slides\\133196260397660608_main-slider-1-2.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221079263805339_post_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221079263805339_post_1.png"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Slides\\133196260748282543_main-slider-1-3.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Slides\\133196260748282543_main-slider-1-3.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221079529869617_post_10.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221079529869617_post_10.png"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Slides\\133196260948571108_main-slider-2-1.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Slides\\133196260948571108_main-slider-2-1.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221081139245576_single_blog_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221081139245576_single_blog_1.png"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Slides\\133196261182831985_main-slider-2-2.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Slides\\133196261182831985_main-slider-2-2.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221082980203330_single_blog_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221082980203330_single_blog_1.png"
     },
     {
-      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Slides\\133196261388593532_main-slider-2-3.jpg",
-      "PackagePath": "staticwebassets\\Upload\\Slides\\133196261388593532_main-slider-2-3.jpg"
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221085365153406_133191148336495621_OMEN Earth Day 2021.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221085365153406_133191148336495621_OMEN Earth Day 2021.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221269848672982_game4v-Marvels-Guardians-of-the-Galaxy-1677595410-99-1024x576.jpeg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221269848672982_game4v-Marvels-Guardians-of-the-Galaxy-1677595410-99-1024x576.jpeg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221287856621823_game4v-Sons-of-the-Forest-1-1677509900-96-360x220.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221287856621823_game4v-Sons-of-the-Forest-1-1677509900-96-360x220.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221288347288259_Ultimate-sackboy-phat-hanh-1677399774-24-360x220.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221288347288259_Ultimate-sackboy-phat-hanh-1677399774-24-360x220.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221289008529867_maple-story-1677559674-87-360x220.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221289008529867_maple-story-1677559674-87-360x220.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221289722178953_rsz_1unnamed_2-1677505875-44-360x220.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221289722178953_rsz_1unnamed_2-1677505875-44-360x220.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133221434357448207_maple-story-1677559674-87-360x220.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133221434357448207_maple-story-1677559674-87-360x220.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133261301784826159_product_list_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133261301784826159_product_list_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133261302336591230_product_list_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133261302336591230_product_list_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133262142249687724_product_list_10.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133262142249687724_product_list_10.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269917329752736_product_list_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269917329752736_product_list_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269918185406952_product_list_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269918185406952_product_list_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269919821981226_product_list_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269919821981226_product_list_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269929015295013_pillow neck1.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269929015295013_pillow neck1.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269930389083784_tranding_item_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269930389083784_tranding_item_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269930998571311_tranding_item_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269930998571311_tranding_item_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269931867662758_tranding_item_4.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269931867662758_tranding_item_4.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269937617469103_product_list_4.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269937617469103_product_list_4.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269938792838605_product_list_5.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269938792838605_product_list_5.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269941727726620_product_list_6.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269941727726620_product_list_6.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269942486597315_product_list_7.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269942486597315_product_list_7.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269943414566818_product_list_8.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269943414566818_product_list_8.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269943821964653_product_list_9.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269943821964653_product_list_9.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269944493994871_product_list_10.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269944493994871_product_list_10.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269955228949230_single_product_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269955228949230_single_product_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269955471415419_single_product_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269955471415419_single_product_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269955701126714_single_product_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269955701126714_single_product_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269956630980603_tranding_item_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269956630980603_tranding_item_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269956869793526_tranding_item_6.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269956869793526_tranding_item_6.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269957887102317_tranding_item_5.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269957887102317_tranding_item_5.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269967745358530_230330-neck-pillow-kb-2x1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269967745358530_230330-neck-pillow-kb-2x1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269971165183738_IMG27_1024x1024.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269971165183738_IMG27_1024x1024.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269971642650370_LB_1024x1024.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269971642650370_LB_1024x1024.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133269974337673480_image_2023-04-26_224331956.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133269974337673480_image_2023-04-26_224331956.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277686181349533_product_list_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277686181349533_product_list_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277686647491365_product_list_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277686647491365_product_list_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277687181023524_product_list_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277687181023524_product_list_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277688033749289_product_list_4.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277688033749289_product_list_4.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277688888369373_product_list_5.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277688888369373_product_list_5.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277689309119072_product_list_6.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277689309119072_product_list_6.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277689976724012_product_list_7.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277689976724012_product_list_7.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277690329985273_product_list_8.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277690329985273_product_list_8.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277690826735084_product_list_9.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277690826735084_product_list_9.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277691066423486_product_list_10.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277691066423486_product_list_10.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277692099915156_tranding_item_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277692099915156_tranding_item_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277692660970812_tranding_item_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277692660970812_tranding_item_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277692989432442_tranding_item_4.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277692989432442_tranding_item_4.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277693682156036_tranding_item_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277693682156036_tranding_item_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277694043106491_tranding_item_6.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277694043106491_tranding_item_6.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277694871469267_tranding_item_5.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277694871469267_tranding_item_5.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277696315402376_single_product_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277696315402376_single_product_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277696573189662_single_product_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277696573189662_single_product_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133277697376910639_single_product_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133277697376910639_single_product_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133278587399341809_RS_-PostOpPillows_header.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133278587399341809_RS_-PostOpPillows_header.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133278588773889661_news2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133278588773889661_news2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133278589705165364_news3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133278589705165364_news3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133278590568406377_news4.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133278590568406377_news4.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133278592155055018_After-Cervical-Fusion-e1575692134959.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133278592155055018_After-Cervical-Fusion-e1575692134959.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133282522421647702_Wave.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133282522421647702_Wave.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133282523200891778_Screenshot_7.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133282523200891778_Screenshot_7.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133474697191006555_maophac.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133474697191006555_maophac.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133474714318149712_maophac.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133474714318149712_maophac.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133474715286660004_maophac.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133474715286660004_maophac.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\133474721825155707_Wave.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\133474721825155707_Wave.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\Ultimate-sackboy-phat-hanh-1677399774-24-360x220.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\Ultimate-sackboy-phat-hanh-1677399774-24-360x220.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\game4v-Marvels-Guardians-of-the-Galaxy-1677595410-99-1024x576.jpeg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\game4v-Marvels-Guardians-of-the-Galaxy-1677595410-99-1024x576.jpeg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\game4v-Sons-of-the-Forest-1-1677509900-96-360x220.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\game4v-Sons-of-the-Forest-1-1677509900-96-360x220.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\maple-story-1677559674-87-360x220.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\maple-story-1677559674-87-360x220.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\next.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\next.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post1.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post1.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post2.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post2.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post3.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post3.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post4.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post4.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_10.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_10.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_4.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_4.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_5.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_5.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_6.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_6.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_7.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_7.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_8.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_8.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\post_9.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\post_9.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\preview.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\preview.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\rsz_1unnamed_2-1677505875-44-360x220.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\rsz_1unnamed_2-1677505875-44-360x220.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\single_blog_1.jpg",
+      "PackagePath": "staticwebassets\\Upload\\Products\\single_blog_1.jpg"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\single_product_1.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\single_product_1.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\single_product_2.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\single_product_2.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Products\\single_product_3.png",
+      "PackagePath": "staticwebassets\\Upload\\Products\\single_product_3.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Slides\\banner.png",
+      "PackagePath": "staticwebassets\\Upload\\Slides\\banner.png"
+    },
+    {
+      "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\Upload\\Slides\\banner_img.png",
+      "PackagePath": "staticwebassets\\Upload\\Slides\\banner_img.png"
     },
     {
       "Id": "D:\\Học Thêm DotNet\\BTL\\BTL\\wwwroot\\assets\\css\\all.css",

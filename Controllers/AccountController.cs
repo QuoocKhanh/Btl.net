@@ -86,7 +86,7 @@ namespace BTL.Controllers
             //huy cac bien session
             HttpContext.Session.Remove("customer_email");
             HttpContext.Session.Remove("customer_id");
-            return Redirect("/Account/Login");
+            return Redirect("/Home");
         }
     }
 }

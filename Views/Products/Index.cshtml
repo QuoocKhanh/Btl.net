@@ -24,33 +24,40 @@
                         @item.Name
                     </a>
                 </h3>
-                    <p>From @string.Format("{0:#,#.}",item.Price)$</p>
-                   
+                    <p>From @string.Format("{0:#,#.}",item.Price)$</p>                 
             </div>
         </div>
         }      
-    </div>
-    
-     
+    </div> 
     <div class="load_more_btn text-center">
-        <div class="pagination">
-             @Html.PagedListPager((IPagedList)Model,p=>Url.Action("Index", new {page = p}))
-        </div>
-        
-    </div>   
-    <style>
-        .pagination {
-  display: inline-block;
-}
-
-.pagination a  {
-  color: black;
-  float: left;
-  
-  text-decoration: none;
-}
-
-    </style>
-    
+             @Html.PagedListPager((IPagedList)Model,p=>Url.Action("Index", new {page = p})) 
+    </div>      
 </div>
+<style>
+    .pagination {
+        justify-content: center;
+    }
+
+
+        .pagination > .active > span, .pagination > .active > span :hover{
+    z-index: 3;
+    color: #fff;
+    cursor: default;
+    background-color: #B08EAD;
+    border-color:  #F4EDF2;
+}
+        .pagination > li > a, .pagination > li > span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            
+            margin-left: 20px;
+            line-height: 1.42857143;
+            color: black;
+            border-radius: 50%;
+            text-decoration: none;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+</style>
 

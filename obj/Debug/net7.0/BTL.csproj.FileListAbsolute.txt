@@ -272,3 +272,4 @@ D:\Học Thêm DotNet\BTL\BTL\bin\Debug\net7.0\runtimes\win-x64\native\Microsoft
 D:\Học Thêm DotNet\BTL\BTL\bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 D:\Học Thêm DotNet\BTL\BTL\bin\Debug\net7.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 D:\Học Thêm DotNet\BTL\BTL\obj\Debug\net7.0\BTL.MvcApplicationPartsAssemblyInfo.cs
+D:\Học Thêm DotNet\BTL\BTL\obj\Debug\net7.0\BTL.sourcelink.json

@@ -12,5 +12,7 @@ namespace BTL.Models
         public string Name { get; set; }
 
         public int ParentId { get; set; }
+
+       
     }
 }

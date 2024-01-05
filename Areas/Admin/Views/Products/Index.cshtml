@@ -25,23 +25,7 @@
         }
         return str;
     }
-    //hàm liệt kê các tag tương ứng với id sản phẩm
-    public string ListTagsProductsName(int _ProductId)
-    {
-        //lấy các danh mục trong table CatgoriesProducts tương ứng với _ProductId
-        List<ItemTagProduct> list_tags_products = db.TagsProducts.Where(item => item.ProductId == _ProductId).ToList();
-        //lấy các danh mục tương ứng với id danh mục vừa lấy ở trên
-        string str = "";
-        foreach (var item_tag_product in list_tags_products)
-        {
-            ItemTag record_tag = db.Tags.Where(item => item.Id == item_tag_product.TagId).FirstOrDefault();
-            if (record_tag != null)
-            {
-                str += "<div>" + record_tag.Name + "</div>";
-            }
-        }
-        return str;
-    }
+    
 }
 <div class="row clearfix">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -56,7 +40,7 @@
                             <i class="material-icons">more_vert</i>
                         </a>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="/Admin/Adv/Create">Add new adv</a></li>
+                            <li><a href="/Admin/Products/Create">Add new products</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -68,7 +52,7 @@
                             <th style="width:100px;">Photo</th>
                             <th style="width:200px;">Name</th>
                             <th style="width:80px;">Categories</th>
-                             <th style="width:100px;">Tag</th>
+                            
                             <th style="width:100px;">Price</th>
                             <th style="width:100px;">Discount</th>
                             <th style="width:80px; text-align:center;">Hot</th>
@@ -87,7 +71,7 @@
                                 </td>
                                 <td>@item.Name</td>
                                 <td>@Html.Raw(ListCategoriesProductsName(item.Id))</td>
-                                <td>@Html.Raw(ListTagsProductsName(item.Id))</td>
+                                
                                 <td style="text-align:center">@string.Format("{0:#,#.}",item.Price) $</td>
                                 <td style="text-align:center">@item.Discount %</td>
                                 <td style="text-align:center">

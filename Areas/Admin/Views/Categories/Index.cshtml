@@ -1,11 +1,9 @@
 ﻿@{
 	Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
-@*Để phân trang thì using các đối tượng sau*@
+
 @using X.PagedList;
 @using X.PagedList.Mvc.Core;
-@* Co the dinh nghia cac ham, viet code trong file.cshtml*@
-
 @using BTL.Models
 @functions {
 	public MyDbContext db = new MyDbContext();

@@ -12,7 +12,7 @@
 
 <div class="wrap-shop-control">
 
-	<h1 class="shop-title">Search from price: @ViewBag.fromPrice - to price: @ViewBag.toPrice</h1>
+	
 
 	<div class="wrap-right">
 	</div>
@@ -42,14 +42,35 @@
 
 </div>
 
-<div class="wrap-pagination-info">
-	@*<ul class="page-numbers">
-	<li><span class="page-number-item current">1</span></li>
-	<li><a class="page-number-item" href="#">2</a></li>
-	<li><a class="page-number-item" href="#">3</a></li>
-	<li><a class="page-number-item next-link" href="#">Next</a></li>
-	</ul>*@
-	@* Hàm sau sẽ thực hiện việc hiển thị phân trang *@
-	@Html.PagedListPager((IPagedList)Model,p=>Url.Action("SearchPrice", new {page = p, fromPrice=ViewBag.fromPrice, toPrice=ViewBag.toPrice}))
+<div class="load_more_btn text-center">
+	
+		@Html.PagedListPager((IPagedList)Model,p=>Url.Action("SearchPrice", new {page = p, fromPrice=ViewBag.fromPrice, toPrice=ViewBag.toPrice}))
+	
 </div>
+<style>
+	.pagination {
+		justify-content: center;
+	}
 
+
+		.pagination > .active > span, .pagination > .active > span :hover{
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #B08EAD;
+	border-color:  #F4EDF2;
+}
+		.pagination > li > a, .pagination > li > span {
+			position: relative;
+			float: left;
+			padding: 6px 12px;
+
+			margin-left: 20px;
+			line-height: 1.42857143;
+			color: black;
+			border-radius: 50%;
+			text-decoration: none;
+			background-color: #fff;
+			border: 1px solid #ddd;
+		}
+</style>

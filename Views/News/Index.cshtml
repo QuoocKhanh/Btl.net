@@ -1,0 +1,142 @@
+﻿@{
+    Layout = "~/Views/Sharedd/Layout3.cshtml";
+
+}
+@using BTL.MyClass;
+@using BTL.Models;
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+
+@functions{
+    public MyDbContext db = new MyDbContext();
+    public List<ItemNews> IsHot()
+    {
+        List<ItemNews> list_record = db.News.Where(item => item.Hot ==1 ).OrderByDescending(item => item.Id).Take(4).ToList();
+        return list_record;
+    } 
+}
+
+<section class="breadcrumb_part">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb_iner">
+                    <h2>News</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="blog_area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
+                    @foreach(var item in Model)
+                    {
+                        <article class="blog_item">
+                            <div class="blog_item_img">
+                                <img class="card-img rounded-0" src="~/Upload/Products/@item.Photo" alt="">
+                                <a href="#" class="blog_item_date">
+                                    <h3>15</h3>
+                                    <p>Jan</p>
+                                </a>
+                            </div>
+
+                            <div class="blog_details">
+                                <a class="d-inline-block" href="/News/Detail/@item.Id">
+                                    <h2>@item.Name</h2>
+                                </a>
+                                <p>
+                                    @Html.Raw(@item.Content)
+                                </p>
+                                <ul class="blog-info-link">
+                                    <li><a href="#"><i class="far fa-user"></i> Travel, Lifestyle</a></li>
+                                    <li><a href="#"><i class="far fa-comments"></i> 03 Comments</a></li>
+                                </ul>
+                            </div>
+                        </article>
+                    }
+                    <nav class="blog-pagination justify-content-center d-flex">                     
+                            @Html.PagedListPager((IPagedList)Model,p=>Url.Action("Index", new {page = p}))                      
+                    </nav>
+                    <style>
+                        .pagination {
+                            justify-content: center;
+                        }
+
+
+                            .pagination > .active > span, .pagination > .active > span :hover {
+                                z-index: 3;
+                                color: #fff;
+                                cursor: default;
+                                background-color: #B08EAD;
+                                border-color: #F4EDF2;
+                            }
+
+                            .pagination > li > a, .pagination > li > span {
+                                position: relative;
+                                float: left;
+                                padding: 6px 12px;
+                                margin-left: 20px;
+                                line-height: 1.42857143;
+                                color: black;
+                                border-radius: 50%;
+                                text-decoration: none;
+                                background-color: #fff;
+                                border: 1px solid #ddd;
+                            }
+                    </style>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="blog_right_sidebar">               
+                    <aside class="single_sidebar_widget popular_post_widget">
+                        <h3 class="widget_title">Hot News</h3>
+                        @{
+                            List < ItemNews > news = IsHot();
+                        }
+
+                        @foreach(var item in news )
+                        {
+                            <div class="media post_item">
+                            <img  class="img_b" src="/Upload/Products/@item.Photo" alt="post">
+                            <div class="media-body">
+                                    <a href="/News/Detail/@item.Id">
+                                    <h3>@item.Name</h3>
+                                </a>
+                                <p>March 1, 2023</p>
+                            </div>
+                        </div>
+                        }
+                       <style>
+                            
+                           
+                            .img_b{
+                                max-width: 100px;
+                                max-height: 80px
+
+                            }
+                            .blog_right_sidebar .popular_post_widget .post_item .media-body h3 {
+                                font-size: 13px;
+                                line-height: 15px;
+                                margin-bottom: 6px;
+                                transition: all 0.3s linear;
+                            }
+
+
+                            .media-body h3 {
+                                margin-top: 0;
+                            }
+                        </style>
+                        
+
+                    </aside>
+                              
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

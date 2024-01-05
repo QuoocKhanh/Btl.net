@@ -49,7 +49,7 @@ namespace BTL.Areas.Admin.Controllers
             return View("CreateUpdate", record);
         }
         //khi ấn nút submit thì trạng thái của trang sẽ là POST -> khai báo Attribute [HttpPost]
-        [HttpPost]
+        
         public IActionResult UpdatePost(IFormCollection fc, int? id)
         {
             int _id = id ?? 0;
@@ -94,25 +94,37 @@ namespace BTL.Areas.Admin.Controllers
                     record.Photo = _file_name;
                     //cập nhật lại table
                     db.SaveChanges();
-
                 }
-                List<ItemCategory> list = db.Categories.ToList();
-                List<string> lst_cate_id = new List<string>();
-                List<ItemCategoriesProducts> record_cate_product = db.CategoriesProducts.Where(n => n.ProductId == _id).ToList();
-                foreach(var item in record_cate_product) 
+                db.SaveChanges();
+
+                //CategoryProduct
+                //liệt kê các checkbox để lấy giá trị insert vào table CategoriesProducts
+                List<ItemCategory> list_categories = db.Categories.ToList();
+                //xóa các bản ghi trong table CategoriesProducts có id tương ứng với sản phẩm này (trước khi insert dữ liệu mới)
+                List<ItemCategoriesProducts> list_category_product = db.CategoriesProducts.Where(item => item.ProductId == _id).ToList();
+                foreach (var item in list_category_product)
                 {
                     db.CategoriesProducts.Remove(item);
                 }
                 db.SaveChanges();
-                /*foreach (var category in list)
+                foreach (var itemCategory in list_categories)
                 {
-                    string formName = "category_" + category.Id;
-                    if (!String.IsNullOrEmpty(Request.Form[formName])) 
-                    { 
-                        list.Add(Request.Form[formName].ToString());
+                    string formName = "category_" + itemCategory.Id;
+                    if (!String.IsNullOrEmpty(Request.Form[formName]))
+                    {
+                        ItemCategoriesProducts recordCategoryProduct = new ItemCategoriesProducts();
+                        recordCategoryProduct.CategoryId = itemCategory.Id;
+                        recordCategoryProduct.ProductId = _id;
+                        //thêm bản ghi vào table
+                        db.CategoriesProducts.Add(recordCategoryProduct);
+                        db.SaveChanges();
                     }
-                }*/
-                
+                }
+                db.SaveChanges();
+
+
+               
+
             }
             //di chuyển đến action có tên là Index
             return RedirectToAction("Index");
@@ -169,10 +181,39 @@ namespace BTL.Areas.Admin.Controllers
             //them ban ghi vao table Products
             db.Products.Add(record);
             db.SaveChanges();
+
+            //CategoryProdyct
+            int insert_id = record.Id;
+            List<ItemCategory> list = db.Categories.ToList();
+            foreach (var itemCate in list)
+            {
+                string formName = "category_" + itemCate.Id;
+                if (!string.IsNullOrEmpty(Request.Form[formName]))
+                {
+                    ItemCategoriesProducts recordCateProduct = new ItemCategoriesProducts();
+                    recordCateProduct.CategoryId = itemCate.Id;
+                    recordCateProduct.ProductId = insert_id;
+                    db.CategoriesProducts.Add(recordCateProduct);
+                    db.SaveChanges();
+                }
+            }
+
+
+            //TagProduct
+            List<string> lst_id_tags = Request.Form["tags"].ToList();
+            foreach (var tag_id in lst_id_tags)
+            {
+                ItemTagProduct record_tag_product = new ItemTagProduct();
+                record_tag_product.TagId = Convert.ToInt32(tag_id);
+                record_tag_product.ProductId = insert_id;
+                db.TagsProducts.Add(record_tag_product);
+                db.SaveChanges();
+            }
             //di chuyển đến action có tên là Index
             return RedirectToAction("Index");
         }
         //xoa ban ghi
+
         public IActionResult Delete(int? id)
         {
             int _id = id ?? 0;

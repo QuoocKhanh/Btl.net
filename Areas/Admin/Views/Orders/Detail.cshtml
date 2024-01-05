@@ -51,6 +51,7 @@
                     <th>Name</th>
                     <th style="width:100px;">Price</th>
                     <th style="width:100px;">Quantity</th>
+                    <th style="width:100px;">Total</th>
                     </thead>
                     <tbody>
 
@@ -63,9 +64,11 @@
                                 <img src="~/Upload/Products/@recordProducts.Photo" style="width:100px;" />
                             }</td>
                                 <td>@recordProducts.Name</td>
-                                <td>@string.Format("{0:#,#.}", (recordProducts.Price * recordProducts.Discount) / 100) đ</td>
-                                <td style="text-align:center;">@item.Quantity</td>
-                                
+                                @*<td>@string.Format("{0:#,#.}",(recordProducts.Price * recordProducts.Discount) / 100) đ</td>
+                                <td style="text-align:center;">@item.Quantity</td>*@
+                                <td>@string.Format("{0:#,#.}", recordProducts.Price - (recordProducts.Price * recordProducts.Discount) / 100) đ</td>
+                                <td style="text-align:center">@item.Quantity</td>
+                                <td>@string.Format("{0:#,#.}", @item.Quantity*(recordProducts.Price - (recordProducts.Price * recordProducts.Discount) / 100)) đ</td>
                             </tr>
 
                         }

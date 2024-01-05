@@ -28,11 +28,56 @@ namespace BTL.Controllers
         {
             //lay cac san pham trong gio hang
             List<Item> _cart = Cart.GetCart(HttpContext.Session);
-            if(_cart != null)
+            if (_cart != null)
             {
                 ViewBag._cart = _cart;
                 ViewBag._total = _cart.Sum(tbl => (tbl.ProductRecord.Price - (tbl.ProductRecord.Price * tbl.ProductRecord.Discount / 100)) * tbl.Quantity);
             }
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("customer_id")))
+            {
+                int customer_id = int.Parse(HttpContext.Session.GetString("customer_id"));
+                ItemOrders _RecordOrder = new ItemOrders();
+
+                _RecordOrder.CustomerId = customer_id;
+                _RecordOrder.Create = DateTime.Now;
+                _RecordOrder.Price = _cart.Sum(tbl => tbl.ProductRecord.Price * tbl.Quantity);
+
+
+                ViewBag.CustomerId = customer_id;
+                ViewBag.Create = DateTime.Now;
+                ViewBag.Price = _cart.Sum(tbl => tbl.ProductRecord.Price * tbl.Quantity);
+            }
+
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("customer_email")))
+            {              
+                List < ItemCustomers > cus = db.Customers.OrderByDescending(item => item.Id).ToList();
+                foreach (var item in cus)
+                {
+                    if (item.Email == HttpContext.Session.GetString("customer_email"))
+                    {
+                        ViewBag.address = item.Address;
+                        ViewBag.email = item.Email;
+                        ViewBag.name = item.Name;
+                        ViewBag.phone = item.Phone;
+                    }
+                }
+                return View("Index", cus);
+
+            }
+            if (!String.IsNullOrEmpty(HttpContext.Session.GetString("customer_email")))
+            {
+                List<ItemOrders> ord = db.Orders.OrderByDescending(item => item.Id).ToList();
+                foreach (var item in ord)
+                {
+                    if (item.Id == int.Parse(HttpContext.Session.GetString("customer_id")))
+                    {
+                        ViewBag.id = item.Id;
+                        ViewBag.create = item.Create;
+                        ViewBag.price = item.Price;
+                    }
+                }
+            }
+           
             return View();
         }
         //them san pham vao gio hang
@@ -65,7 +110,7 @@ namespace BTL.Controllers
             //lay cac san pham trong gio hang
             List<Item> _cart = Cart.GetCart(HttpContext.Session);
             //duyet cac phan tu trong list _cart
-            foreach(var item in _cart)
+            foreach (var item in _cart)
             {
                 //lay so luong cac phan tu
                 int quantity = Convert.ToInt32(Request.Form["product_" + item.ProductRecord.Id]);
@@ -78,7 +123,7 @@ namespace BTL.Controllers
         //thanh toan gio hang
         public IActionResult Checkout()
         {
-            //kiem tra neu user chua dang nhap thi yeu cau dang nhap
+            
             if (HttpContext.Session.GetString("customer_email") == null)
                 return Redirect("/Account/Login");
             else
@@ -107,10 +152,16 @@ namespace BTL.Controllers
                     db.OrdersDetail.Add(_RecordOrdersDetail);
                     db.SaveChanges();
                 }
+                          
                 //xoa tat cac cac phan tu trong gio hang
                 Cart.CartDestroy(HttpContext.Session);
-                return Redirect("/Cart?checkout=success");
+                return View("Index");
+
             }
+
         }
+        
     }
 }
+
+

@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
+}
+
+@using BTL.Models;
+@functions {
+    public MyDbContext db = new MyDbContext();
+    public List<ItemCategory> ListCategories()
+    {
+        List<ItemCategory> list_categories = db.Categories.OrderByDescending(item => item.Id).ToList();
+        return list_categories;
+    }
+    public List<ItemCategory> ListSubCategories(int _CategoryId)
+    {
+        List<ItemCategory> list_categories = db.Categories.Where(item => item.ParentId == _CategoryId).OrderByDescending(item => item.Id).ToList();
+        return list_categories;
+    }
+    public List<ItemTag> ListTags()
+    {
+        List<ItemTag> list_tags = db.Tags.OrderByDescending(item => item.Id).ToList();
+        return list_tags;
+    }
+    //kiểm tra table CategoriesProducts xem có bản ghi tương ứng với CategoryId, ProductId truyền vào không
+    public bool CheckCategoriesProductsRecord(int _CategoryId, int _ProductId)
+    {
+        ItemCategoriesProducts record = db.CategoriesProducts.Where(item => item.CategoryId == _CategoryId && item.ProductId == _ProductId).FirstOrDefault();
+        if (record != null)
+        {
+            return true;
+        }
+        return false;
+    }
+    //kiểm tra table TagsProducts xem có bản ghi tương ứng với CategoryId, ProductId truyền vào không
+    public bool CheckTagsProductsRecord(int _TagId, int _ProductId)
+    {
+        ItemTagProduct record = db.TagsProducts.Where(item => item.TagId == _TagId && item.ProductId == _ProductId).FirstOrDefault();
+        if (record != null)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+<div class="card">
+    <div class="body">
+        <div>
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation"><a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">Edit News</a></li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
+                    <form class="form-horizontal" method="post" enctype="multipart/form-data" action="@ViewBag.action">
+                        <div class="form-group">
+                            <label for="NameSurname" class="col-sm-2 control-label">Name </label>
+                            <div class="col-sm-10">
+                                <div class="form-line">
+                                    <input type="text" value="@if(Model != null){
+                                    <text>@Model.Name</text>
+                                    }" name="name" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="NameSurname" class="col-sm-2 control-label">Photo </label>
+                            <div class="col-sm-10">
+                                <div class="form-line">
+                                    <input type="file" name="photo" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="NameSurname" class="col-sm-2 control-label">Hot </label>
+                            <div class="col-sm-10">
+                                <div class="form-line">
+                                    <input type="checkbox" name="hot" id="hot" @if(Model != null && Model.Hot == 1){
+                                    <text>checked</text>
+}> <label for="hot">Hot</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="NameSurname" class="col-sm-2 control-label">Description </label>
+                            <div class="col-sm-10">
+                                <div class="form-line">
+                                    <textarea name="description" id="description">@if (Model != null)
+                                        {
+                                            <text>@Model.Description</text>
+                                        }</textarea>
+                                    <script language="javascript">
+                                        CKEDITOR.replace("description");
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="NameSurname" class="col-sm-2 control-label">Content </label>
+                            <div class="col-sm-10">
+                                <div class="form-line">
+                                    <textarea name="content" id="content">@if (Model != null)
+                                        {
+                                            <text>@Model.Content</text>
+                                        }</textarea>
+                                    <script language="javascript">
+                                        CKEDITOR.replace("content");
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-danger">SUBMIT</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

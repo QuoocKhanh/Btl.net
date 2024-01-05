@@ -41,7 +41,7 @@ namespace BTL.Areas.Admin.Controllers
             using (SqlConnection conn = new SqlConnection(strDbConnectString))
             {
                 //thuc hien truy van, tra ket qua ve bien object
-                SqlDataAdapter da = new SqlDataAdapter("Select * from categories where ParentId = 0 ", conn);
+                SqlDataAdapter da = new SqlDataAdapter("Select * from categories where ParentId = 0 order by Id desc ", conn);
                 //Do du lieu vao data table co ten la dtcate
                 da.Fill(dtCate);
             }
@@ -52,7 +52,12 @@ namespace BTL.Areas.Admin.Controllers
             List<ItemCategory> lstCate = new List<ItemCategory>();
             foreach (DataRow item in dtCate.Rows)
             {
-                lstCate.Add(new ItemCategory() { Id = Convert.ToInt32(item["Id"].ToString()), Name = item["Name"].ToString(), ParentId = Convert.ToInt32(item["ParentId"].ToString()) });
+                lstCate.Add(new ItemCategory() 
+                { 
+                    Id = Convert.ToInt32(item["Id"].ToString()), 
+                    Name = item["Name"].ToString(), 
+                    ParentId = Convert.ToInt32(item["ParentId"].ToString()) 
+                });
 
             }
             return View("Index", lstCate.ToPagedList(current_page, record_per_page));

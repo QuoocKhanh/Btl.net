@@ -61,5 +61,29 @@ namespace project.Controllers
             //truyền giá trị ra view có phân trang
             return View("SearchTag", list_record.ToPagedList(current_page, record_per_page));
         }
+        public IActionResult SearchName(int? page)
+        {
+            string key = !String.IsNullOrEmpty(Request.Query["key"]) ? Request.Query["key"] : "";
+
+            ViewBag.key = key;
+
+            int current_page = page ?? 1;
+            //định nghĩa số bản ghi trên một trang
+            int record_per_page = 5;
+            //lấy tất cả các bản ghi trong table Products
+            List<ItemProduct> list_record = db.Products.Where(item => item.Name.Contains(key) || item.Description.Contains(key) || item.Content.Contains(key)).OrderByDescending(item => item.Id).ToList();
+
+            return View("SearchName", list_record.ToPagedList(current_page, record_per_page));
+        }
+        public string Ajax()
+        {
+            string key = !String.IsNullOrEmpty(Request.Query["key"]) ? Request.Query["key"] : "";
+
+            List<ItemProduct> list_record = db.Products.Where(item => item.Name.Contains(key) || item.Description.Contains(key) || item.Content.Contains(key)).OrderByDescending(item => item.Id).ToList();
+            string str = "";
+            foreach (var item in list_record)
+                str = str + "<li><a href='/Products/Detail/" + item.Id + "'><img src='/Upload/Products/" + item.Photo + "'>" + item.Name + "</a></li>";
+            return str;
+        }
     }
 }
